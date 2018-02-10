@@ -9,7 +9,7 @@ function checkAge(age) {
 
 function checkidentifiant(str) {
     "use strict";
-    var regex = new RegExp('^[a-z]{5,12}$');
+    var regex = new RegExp('^[a-zA-Z]{5,12}$');
     if (regex.test(str)) {
         return true;
     } else {
@@ -65,8 +65,6 @@ function checkcarsing(str) {
     return nb > 0;
 }
 
-
-
 function verification() {
     "use strict";
     
@@ -77,58 +75,100 @@ function verification() {
         mdp1 = document.getElementById("password"),
         mdp2 = document.getElementById("confirmpassword"),
         cgu = document.getElementById("CGU"),
-        valide = 7;
+        valide = 7,
+        mdpvalide = false;
+    
+    //verif prenom
+    if (prenom.value !== "") {
+        valide -= 1;
+    }
+    
+    //verif nom
+    if (nom.value !== "") {
+        valide -= 1;
+    }
     
     // verif Age
-    if (!checkAge(age.value)) {
+    if (!checkAge(age.value) && age.value !== "") {
         age.setAttribute("class", 'false');
+        document.getElementById("messageAge").textContent = "Vous devez avoir au moins 18 ans.";
     } else if (checkAge(age.value)) {
-        age.setAttribute("class", 'true');
+        age.removeAttribute("class", 'false');
         valide -= 1;
     }
     
     // verif Identifiant
-    if (!checkidentifiant(String(identifiant.value))) {
+    if (!checkidentifiant(String(identifiant.value)) && identifiant.value !== "") {
         identifiant.setAttribute("class", 'false');
     } else if (checkidentifiant(String(identifiant.value))) {
-        identifiant.setAttribute("class", 'true');
+        identifiant.removeAttribute("class", 'false');
         valide -= 1;
     }
     
     //verif mdp
     var messagemdp = "", force = 100;
-    if (!checknumber(String(mdp1.value))) {
-        messagemdp += "Votre mot de passe doit contenir au moins un chiffre.\n";
-        force -= 20;
+    document.getElementById("messagemdp").textContent = "";
+    if (String(mdp1.value) !== "") {
+        if (!checknumber(String(mdp1.value))) {
+            messagemdp += "Votre mot de passe doit contenir au moins un chiffre.";
+            force -= 20;
+        }
+        if (!checkmin(String(mdp1.value))) {
+            messagemdp += "Votre mot de passe doit contenir au moins une lettre minuscule. ";
+            force -= 20;
+        }
+        if (!checkmaj(String(mdp1.value))) {
+            messagemdp += "Votre mot de passe doit contenir au moins une lettre majuscule.";
+            force -= 20;
+        }
+        if (!checkcarsing(String(mdp1.value))) {
+            messagemdp += "Votre mot de passe doit contenir au moins un caractère spécial. ";
+            force -= 20;
+        }
+        if (String(mdp1.value).length < 8) {
+            messagemdp += "Votre mot de passe doit contenir au moins 8 caractères. ";
+            force -= 20;
+        }
+    } else {
+        force = 0;
     }
-    if (!checkmin(String(mdp1.value))) {
-        messagemdp += "Votre mot de passe doit contenir au moins une lettre minuscule. \n";
-        force -= 20;
-    }
-    if (!checkmaj(String(mdp1.value))) {
-        messagemdp += "Votre mot de passe doit contenir au moins une lettre majuscule.\n";
-        force -= 20;
-    }
-    if (!checkcarsing(String(mdp1.value))) {
-        messagemdp += "Votre mot de passe doit contenir au moins un caractère spécial. \n";
-        force -= 20;
-    }
-    if (String(mdp1.value).length < 8) {
-        messagemdp += "Votre mot de passe doit contenir au moins 8 caractères.\n";
-        force -= 20;
-    }
+    
     if (force === 100) {
         valide -= 1;
+        mdpvalide = true;
+        document.getElementById("progress").setAttribute("class", "e"+force);
     } else {
-        
+        document.getElementById("messagemdp").textContent = messagemdp;
+        document.getElementById("progress").setAttribute("class", "e"+force);
     }
     
+    //verif mdp2
+    if (mdpvalide) {
+        mdp2.removeAttribute("disabled");
+        if (mdp1.value === mdp2.value) {
+            valide -= 1;
+            mdp2.removeAttribute("class", "false");
+        } else if (mdp2.value === "") {
+            mdp2.removeAttribute("class", "false");
+        } else {
+            mdp2.setAttribute("class", "false");
+        }
+    } else {
+        mdp2.setAttribute('disabled', true);
+    }
     
-    
+    //verif CGU
+    if (cgu.getAttribute("checked") && valide === 1) {
+        document.getElementById("Valider").removeAttribute("disabled");
+    }
+    console.log(valide);
+   
 }
 
 function initialisation() {
     "use strict";
+    document.getElementById("confirmpassword").setAttribute("disabled", true);
+    document.getElementById("Valider").setAttribute("disabled", true);
     document.getElementById("form").addEventListener('change', verification);
 }
 

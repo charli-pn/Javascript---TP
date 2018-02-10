@@ -1,11 +1,59 @@
 .false {
-    border-color: lightcoral;
+    background-color: lightcoral;
 }
 
 .true {
-    border-color: aquamarine;
+    background-color: aquamarine;
+}
+
+.erreur {
+    color: red;
 }
 
 p {
     color: crimson;
+}
+
+#progressbar {
+    height: 10px;
+    width: 171px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gainsboro;
+}
+
+.e0 {
+    height: 100%;
+    width: 0%;
+    background-color: red;
+}
+
+.e20 {
+    height: 100%;
+    width: 20%;
+    background-color: red;
+}
+
+.e40 {
+    height: 100%;
+    width: 40%;
+    background-color: orangered;
+}
+
+.e60 {
+    height: 100%;
+    width: 60%;
+    background-color: orange;
+}
+
+.e80 {
+    height: 100%;
+    width: 80%;
+    background-color: yellow;
+}
+
+.e100 {
+    height: 100%;
+    width: 100%;
+    background-color: limegreen;
 }

@@ -8,24 +8,46 @@
     </head>
     <body>
         <script src="form.js"></script>
-        <p class="false">Inscription</p>
+        <p >Inscription</p>
         <form id="form">
             
-            <label for="Prenom">Prénom : <input type="text" id = "Prenom" ></label><br>
+            <label for="Prenom">Prénom : 
+                <input type="text" id = "Prenom" >
+            </label><br>
+            <span id="messagePrenom" class="erreur"></span>
             
-            <label for="Nom">Nom : <input type="text" id = "Nom"></label><br>
+            <label for="Nom">Nom : 
+                <input type="text" id = "Nom">
+            </label><br>
+            <span id="messageNom" class="erreur"></span>
             
-            <label for="Age" >Âge : <input type="number" id = "Age" ></label><br>
+            <label for="Age" >Âge : 
+                <input type="number" id = "Age" >
+            </label>
+            <span id="messageAge" class="erreur"></span><br>
             
-            <label for="Id">Identifiant : <input type="text" id = "Id"></label><br>
+            <label for="Id">Identifiant : 
+                <input type="text" id = "Id">
+            </label>
+            <span id="messageId" class="erreur"></span><br>
             
-            <label for="password">Mot de Passe : <input type="password" id = "password"></label><br>
+            <label for="password">Mot de Passe : 
+                <input type="password" id = "password">
+            </label>
+            <div id="progressbar">
+                <div id="progress" class="e0">
+                </div>
+            </div>
+            <span id="messagemdp" class="erreur"></span>
             
-            <label for="confirmpassword">Confirmez votre mot de passe : <input type="password" id = "confirmpassword"></label><br>
+            <label for="confirmpassword">Confirmez votre mot de passe : 
+                <input type="password" id = "confirmpassword">
+            </label><br>
+            <span id="messageConfirm" class="erreur"></span>
             
             <label for="CGU"><input type="checkbox" id = "CGU">J'ai lu et j'accepte les CGU </label><br>
             
-            <input type="submit" id="Valider" value = "Valider" disabled>
+            <input type="submit" id="Valider" value = "Valider">
             
         </form>
     </body>
