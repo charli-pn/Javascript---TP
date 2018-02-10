@@ -1,6 +1,8 @@
 function checkAge(age) {
     "use strict";
     if (age < 18) {
+        return false;
+    } else {
         return true;
     }
 }
@@ -39,9 +41,9 @@ function verification() {
         mdp2 = document.getElementById("confirmpassword"),
         cgu = document.getElementById("CGU");
     
-    
-    if (!checkAge(age.value)){
-        age.classList.add('false');
+
+    if (!checkAge(age.value)) {
+        age.setAttribute("class", 'false');
     }
     checkidentifiant(String(identifiant.value));
     

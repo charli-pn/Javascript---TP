@@ -1,3 +1,7 @@
 .false {
-    color: lightcoral;
+    border-color: lightcoral;
+}
+
+p {
+    color: crimson;
 }
