@@ -2,6 +2,10 @@
     border-color: lightcoral;
 }
 
+.true {
+    border-color: aquamarine;
+}
+
 p {
     color: crimson;
 }
