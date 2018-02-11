@@ -10,16 +10,24 @@
     color: red;
 }
 
-p {
-    color: crimson;
+body {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+h1 {
+    color: cadetblue;
+    font-family: sans-serif;
 }
 
 #progressbar {
     height: 10px;
-    width: 171px;
+    width: 10%;
+    margin-left: 45%;
     border-style: solid;
     border-width: 1px;
     border-color: gainsboro;
+    
 }
 
 .e0 {

@@ -67,7 +67,7 @@ function checkcarsing(str) {
 
 function verification() {
     "use strict";
-    
+    //document.getElementById("Valider").removeAttribute("disabled");
     var age = document.getElementById("Age"),
         prenom = document.getElementById("Prenom"),
         nom = document.getElementById("Nom"),
@@ -94,12 +94,14 @@ function verification() {
         document.getElementById("messageAge").textContent = "Vous devez avoir au moins 18 ans.";
     } else if (checkAge(age.value)) {
         age.removeAttribute("class", 'false');
+        document.getElementById("messageAge").textContent = "";
         valide -= 1;
     }
     
     // verif Identifiant
     if (!checkidentifiant(String(identifiant.value)) && identifiant.value !== "") {
         identifiant.setAttribute("class", 'false');
+        document.getElementById("messageId").textContent = "Votre identifiant doit mesurer entre 5 et 12 caractères et ne doit contenir que des lettres.";
     } else if (checkidentifiant(String(identifiant.value))) {
         identifiant.removeAttribute("class", 'false');
         valide -= 1;
@@ -110,7 +112,7 @@ function verification() {
     document.getElementById("messagemdp").textContent = "";
     if (String(mdp1.value) !== "") {
         if (!checknumber(String(mdp1.value))) {
-            messagemdp += "Votre mot de passe doit contenir au moins un chiffre.";
+            messagemdp += "Votre mot de passe doit contenir au moins un chiffre. ";
             force -= 20;
         }
         if (!checkmin(String(mdp1.value))) {
@@ -118,7 +120,7 @@ function verification() {
             force -= 20;
         }
         if (!checkmaj(String(mdp1.value))) {
-            messagemdp += "Votre mot de passe doit contenir au moins une lettre majuscule.";
+            messagemdp += "Votre mot de passe doit contenir au moins une lettre majuscule. ";
             force -= 20;
         }
         if (!checkcarsing(String(mdp1.value))) {
@@ -157,8 +159,13 @@ function verification() {
         mdp2.setAttribute('disabled', true);
     }
     
+    //verif cgu
+    if(cgu.checked) {
+        valide -= 1;
+    }
+    
     //verif CGU
-    if (cgu.getAttribute("checked") && valide === 1) {
+    if (valide === 0) {
         document.getElementById("Valider").removeAttribute("disabled");
     }
     console.log(valide);
