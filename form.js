@@ -78,16 +78,6 @@ function verification() {
         valide = 7,
         mdpvalide = false;
     
-    //verif prenom
-    if (prenom.value !== "") {
-        valide -= 1;
-    }
-    
-    //verif nom
-    if (nom.value !== "") {
-        valide -= 1;
-    }
-    
     // verif Age
     if (!checkAge(age.value) && age.value !== "") {
         age.setAttribute("class", 'false');
@@ -104,6 +94,7 @@ function verification() {
         document.getElementById("messageId").textContent = "Votre identifiant doit mesurer entre 5 et 12 caractères et ne doit contenir que des lettres.";
     } else if (checkidentifiant(String(identifiant.value))) {
         identifiant.removeAttribute("class", 'false');
+        document.getElementById("messageId").textContent = "";
         valide -= 1;
     }
     
@@ -163,6 +154,23 @@ function verification() {
     if(cgu.checked) {
         valide -= 1;
     }
+    
+    //verif prenom
+    if (prenom.value !== "") {
+        valide -= 1;
+        prenom.removeAttribute("class", "false");
+    } else if (valide === 2) {
+        prenom.setAttribute("class", "false");
+    }
+    
+    //verif nom
+    if (nom.value !== "") {
+        valide -= 1;
+        nom.removeAttribute("class", "false");
+    } else if (valide === 2) {
+        nom.setAttribute("class", "false");
+    }
+    
     
     //verif CGU
     if (valide === 0) {
