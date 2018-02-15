@@ -129,10 +129,10 @@ function verification() {
     if (force === 100) {
         valide -= 1;
         mdpvalide = true;
-        document.getElementById("progress").setAttribute("class", "e"+force);
+        document.getElementById("progress").setAttribute("class", "e" + force);
     } else {
         document.getElementById("messagemdp").textContent = messagemdp;
-        document.getElementById("progress").setAttribute("class", "e"+force);
+        document.getElementById("progress").setAttribute("class", "e" + force);
     }
     
     //verif mdp2
@@ -151,7 +151,7 @@ function verification() {
     }
     
     //verif cgu
-    if(cgu.checked) {
+    if (cgu.checked) {
         valide -= 1;
     }
     
