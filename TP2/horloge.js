@@ -13,7 +13,6 @@ function createAlarm() {
         jingleC = document.createElement("option");
     
     checkbox.setAttribute("type", 'checkbox');
-    checkbox.setAttribute("disabled", 'true');
     time.setAttribute("type", "time");
     text.setAttribute("type", "text");
     button.textContent = "-";
@@ -64,22 +63,35 @@ function initialisation() {
                     time = listAlarmes[i].children[1],
                     text = listAlarmes[i].children[2],
                     select = listAlarmes[i].children[3];
-                if (time !== undefined) {
-                    check.removeAttribute("disabled");
-                }
                 
                 if (check.checked) {
                     if (time.value === heure + ":" + min && sec === "00") {
                         
+                        var choice = select.selectedIndex,
+                            music = select.options[choice].value;
+                        var player = document.querySelector('#' + music);
+                        player.play();
+                        
+                        var texte = document.createElement("p");
+                        
                         if (text.value !== "") {
-                            var choice = select.selectedIndex,
-                                music = select.options[choice].value;
-                            var player = document.querySelector('#'+music);
-                            player.play;
-                            alert(text.value);
+                            texte.textContent = text.value;
                         } else {
-                            alert("Alarme lancée");
+                            texte.textContent = "Alarme";
                         }
+                        document.getElementById("alert").appendChild(texte);
+                        var bouton = document.createElement("button");
+                        bouton.textContent = "Stop";
+                        document.getElementById("alert").appendChild(bouton);
+                        document.getElementById("alert").setAttribute("class", "alert");
+                        
+                        bouton.addEventListener("click", function () {
+                            document.getElementById("alert").removeChild(texte);
+                            document.getElementById("alert").removeChild(bouton);
+                            document.getElementById("alert").removeAttribute("class", "alert");
+                            player.pause();
+                            player.currentTime = 0;
+                        });
                         
                     }
                 }
