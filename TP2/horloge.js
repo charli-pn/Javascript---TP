@@ -13,8 +13,11 @@ function createAlarm() {
         jingleC = document.createElement("option");
     
     checkbox.setAttribute("type", 'checkbox');
+    checkbox.setAttribute("class", "checkbox");
     time.setAttribute("type", "time");
+    time.setAttribute("class", "time");
     text.setAttribute("type", "text");
+    text.setAttribute("class", "txt");
     button.textContent = "-";
     div.setAttribute("class", "alarm");
     
@@ -82,6 +85,7 @@ function initialisation() {
                         document.getElementById("alert").appendChild(texte);
                         var bouton = document.createElement("button");
                         bouton.textContent = "Stop";
+                        bouton.setAttribute("class", "bouton");
                         document.getElementById("alert").appendChild(bouton);
                         document.getElementById("alert").setAttribute("class", "alert");
                         
